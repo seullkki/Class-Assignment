@@ -15,6 +15,7 @@
                     현재 디렉토리                     함께 찾을 디렉토리
 
 
+
 2.절대경로와 상대경로에 대하여 설명하시오.
  - 절대 경로 
    ① 의미 : 파일이 위치한 경로를 가장 최상위 디렉토리부터 전부 표시하는 방법.
@@ -31,9 +32,11 @@
                                              상대 경로
 
 
+
 3. . 과 .. 의 차이는?
   - . : 현재 디렉토리
   - .. : 상위 디렉토리 (cd.. 을 입력하면, 상위 디렉토리로 위치 변경) 
+
 
 
 
@@ -55,6 +58,7 @@
                        명시된 패키지에 있는 클래스를 불러올 수 있음.
                  
                  
+		 
                  
 5.package 의 기본적인 명명법(이름짓는법)은?
   - 형태 : 상위 패키지.하위패키지.클래스 이름
@@ -63,6 +67,7 @@
     (도메인은 중복될 수 없기 때문에 고유한 이름을 가질 수 있음
      / 역순으로 사용하는 이유는 포괄적인 이름이 상위 패키지가 되도록 하기 위해)
   - ex. com.naver.프로젝트 이름 / com.daum.프로젝트 이름
+
 
 
 
@@ -121,6 +126,7 @@
 
 
 
+
 7.접근제한자 4가지 종류에 대하여 설명하시오.
   - 위의 예시와 같이 변수 뿐만 아니라, 함수, 클래스에도 접근을 제어할 수 있도록 하는 키워드가 있음.
   - 그러나 변수, 함수, 클래스는 각각 붙일 수 있는 접근 제한자가 정해져 있음.
@@ -132,7 +138,8 @@
 
 
 
-9.class 에서 붙일수 있는 접근 제한자 2개를 설명하고, 해당 접근제한자의 사용 목적은?
+
+8.class 에서 붙일수 있는 접근 제한자 2개를 설명하고, 해당 접근제한자의 사용 목적은?
   - 클래스에 붙일 수 있는 접근 제한자는 public / default 두 가지만 가능.
   
   - public : 다른 모든 패키지에서 public이 붙은 클래스에 접근해 불러올 수 있음(import).
@@ -144,18 +151,209 @@
 
 
 
-10.가위, 바위, 보 게임 작성하시오.
+
+9.가위, 바위, 보 게임 작성하시오.
+
+package java_rec;
+
+public class Game {
+	// 가위바위보 게임 만들기
+	
+	String rock;
+	String sci;
+	String paper;
+	
+	
+	public Game(String choice) {
+		this.paper = paper;
+		this.rock = rock;
+		this.sci = sci;
+	}
+	
+	public void meSci() {
+		int num = (int)(Math.random() * 3);
+		sci = "1";
+		
+		if(num == 1) {
+			System.out.println("컴퓨터가 낸 가위바위보 : 가위");
+		}else if(num == 2) {
+			System.out.println("컴퓨터가 낸 가위바위보 : 바위");
+		}else {
+			System.out.println("컴퓨터가 낸 가위바위보 : 보");
+		}
+		
+		if(Integer.parseInt(sci) == num) {
+			System.out.println("비김");
+		}else if(Integer.parseInt(sci) > num) {
+			System.out.println("이김");
+		}else {
+			System.out.println("짐");
+		}
+			
+	}
+	
+	public void meRock() {
+		int num = (int)(Math.random() * 3);
+		rock = "1";
+		
+		if(num == 1) {
+			System.out.println("컴퓨터가 낸 가위바위보 : 바위");
+		}else if(num == 2) {
+			System.out.println("컴퓨터가 낸 가위바위보 : 보");
+		}else {
+			System.out.println("컴퓨터가 낸 가위바위보 : 가위");
+		}
+		
+		if(Integer.parseInt(rock) == num) {
+			System.out.println("비김");
+		}else if(Integer.parseInt(rock) > num) {
+			System.out.println("이김");
+		}else {
+			System.out.println("짐");
+		}
+	}
+	
+	public void mePaper() {
+		int num = (int)(Math.random() * 3);
+		paper = "1";
+		
+		if(num == 1) {
+			System.out.println("컴퓨터가 낸 가위바위보 : 보");
+		}else if(num == 2) {
+			System.out.println("컴퓨터가 낸 가위바위보 : 가위");
+		}else {
+			System.out.println("컴퓨터가 낸 가위바위보 : 바위");
+		}
+		
+		if(Integer.parseInt(paper) == num) {
+			System.out.println("비김");
+		}else if(Integer.parseInt(paper) > num) {
+			System.out.println("이김");
+		}else {
+			System.out.println("짐");
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------
+package java_rec;
+
+import java.util.Scanner;
+
+public class GameResult {
+
+	public static void main(String[] args) {
+		Scanner scanner;
+		
+		while(true) {
+			scanner = new Scanner(System.in);
+			
+			System.out.println("가위, 바위, 보 중 하나를 입력하세요");
+			String choice = scanner.next();
+			
+			Game game = new Game(choice);
+			
+			if(choice.equals("paper") || choice.equals("Paper") || choice.equals("보")) {
+				game.mePaper();
+			}
+			
+			if(choice.equals("Sci") || choice.equals("sci") || choice.equals("가위")) {
+				game.meSci();
+			}
+			
+			if(choice.equals("Rock") || choice.equals("rock") || choice.equals("바위")) {
+				game.meRock();
+			}
+			
+			System.out.println();
+		}
+	
+		
+	}
+
+}
 
 
 
-11.아래와 같이 계산기 프로그램을 작성하시오.
-==================================
+
+10.아래와 같이 계산기 프로그램을 작성하시오.
+==========================================================================================
 10 + 9 (입력 예시)   // 입력을 한칸씩 띄우도록 할것 ) (+ 양쪽으로 띄우지 않으면 에러 발생)
 10 + 9 = 19 (출력 예시)
 계속하시겠습니까?
 10 - 7
 10 - 7 = 3
 계속하시겠습니까?
+
+============================================================================================
+package java_rec;
+
+public class AutoSum {
+	int num1;
+	int num2;
+	String operator;
+	
+	public AutoSum(int num1, String operator, int num2) {
+		this.num1 = num1;
+		this.num2 = num2;
+		this.operator = operator;
+	}
+	
+	public void getSum() {
+		int result1 = (num1 + num2);
+		System.out.println(num1 + " + " + num2 + " = " + result1);
+	}
+	
+	public void getSub() {
+		int result2 = (num1 - num2);
+		System.out.println(num1 + " - " + num2 + " = " + result2);
+	}
+}
+
+-----------------------------------------------------------------------------
+package java_rec;
+
+import java.util.Scanner;
+
+public class AutoSumResult {
+
+	public static void main(String[] args) {
+		Scanner scanner;
+		
+		while(true) {
+			scanner = new Scanner(System.in);
+						
+			System.out.println("\n" + "연산식을 입력하세요");
+			
+			int input1 = scanner.nextInt();
+			String input2 = scanner.next();
+			int input3 = scanner.nextInt();
+			
+			AutoSum cal = new AutoSum(input1, input2, input3);
+			
+			if(input2.equals("+")) {
+				cal.getSum();
+			}else {
+				cal.getSub();
+			}
+			
+			System.out.println("\n" + "계속 하시겠습니까? Y/N");
+			
+			String answer = scanner.next();
+			
+			if(answer.equals("y") || answer.equals("Y")) {
+				continue;
+			}else {
+				break;
+			}
+		}
+		
+		System.out.println("종료");
+		scanner.close();
+		
+	}
+
+}
+
 
 
 
