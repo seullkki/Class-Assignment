@@ -1,0 +1,178 @@
+1.인스턴스 함수안에 스태틱 변수와 함수가 올수 있는 이유는?
+ - 인스턴스 변수/메소드와 static 변수/메소드는 메모리에 올라갈 때, 데이터가 저장되고 메모리가 할당되는 
+   영역과 시기가 다름.
+ - static 변수/메소드는 실행이 되는 순간 클래스 정보가 스캔되는 메소드 영역에 메모리가 할당됨.
+ - 인스턴스 변수/메소드는 메인 메소드가 실행되어 힙 영역으로 넘어갔을 때, 인스턴스가 생성되면 메모리를 할당받음.
+ - 따라서 static 변수/함수는 인스턴스 변수/메소드보다 먼저 생성되어 있기 때문에, 인스턴스 → static 접근이 가능.
+ - 반대로 static → 인스턴스로의 접근은 아직 생성되지 않은 인스턴스에 접근하는 형태가 되기 때문에 불가능.
+
+
+
+2.메소드 오버로딩이란?
+ - 호출된 메소드를 구분하는 정보는 ① 메소드의 이름, ② 매개변수 정보.
+ - 따라서 메소드의 이름이 같더라도 매개변수의 정보가 서로 다르면 다른 메소드로 보고 각각 호출 가능.
+    = "메소드 오버로딩"
+ - 여기에서 매개변수 정보를 달리하여 메소드를 구분짓는 방법으로 
+   매개 변수의 개수를 다르게 하거나 매개 변수의 데이터 타입을 다르게 하는 방법이 있음.
+ - 그러나 리턴 타입이 다른 경우는 오버로딩 되지 x.
+
+
+
+3.메소드 오버로딩을 적용한 대표적인 함수는?
+ - 대표적인 오버로딩 : println();
+    → 8개 데이터 타입 + String에 대한 메소드를 정의해두었기 때문에, 어떤 데이터 타입을 넣어도 컴파일 됨.
+ - println 같은 오버 로딩을 만들어 놓는 이유는 "캡슐화"를 위해서.
+    → 원칙적으로는 매개 변수의 데이터 타입에 따라 서로 다른 이름의 메소드를 만들어 사용하도록 할 수 있음.
+    → 그러나 오버로딩을 함으로써 println이라는 함수만 사용하면 어떤 데이터 타입이 와도 간편하게 같은 기능을
+        수행할 수 있음. 
+
+
+
+4.this 함수에 대하여 설명하시오.
+ - 형태 : this();
+ - 역할 : 생성자를 호출하는 함수
+    → 생성자도 초기화할 값이 어떤 상태인가에 따라 여러 생성자로 오버로딩할 수 있음.
+    → 이때, 한 생성자 안에 해당 생성자의 매개 변수와 다른 매개 변수를 가진 this 함수를 넣으면, 
+        this 함수에 들어간 매개 변수와 일치하는 생성자가 호출됨.
+
+
+5.this란 무엇인가?
+ - 형태 : this.
+ - 역할 : 생성자의 매개 변수 이름이 인스턴스 변수의 이름과 같을 때, 인스턴스 변수를 표시해주는 방법.
+     → 객체 자기 자신을 의미
+
+
+
+6.스트링 객체를 생성하는 2가지 방법은?
+ ① String 변수이름 = " 입력할 문자열 " ;
+ ② String 변수이름 = new String(" 입력할 문자열 ");
+      → ①과 ②의 출력 결과는 같지만, 서로 같지 x.
+      → 둘은 서로 다른 주소를 가리키고 있는 상태. 
+          ①은 메모리 영역 중 하나인 인스턴스 풀에 메모리를 할당 받고 참조값을 받음.
+          ②는 힙 영역에 인스턴스를 만들어 문자열이 들어가 있는 상태 + 인스턴스 첫 번째 주소값을 받은 상태.
+      → 만약 변수이름만 다른 ①과 동일한 소스 코드를 실행하면, 해당 String 변수는 ①의 주소값을 가리키게 됨.
+          (String 인스턴스는 한번 생성되어 문자열이 입력되면 값을 변경 시킬 수 없는 'Immutable 인스턴스'이기 때문.)
+      → 그러나 변수이름이 다른 ②와 동일한 소스코드가 있다면, 그것은 ②와는 다른 또 다른 인스턴스를 생성함.
+
+
+
+
+.아래의 결과를 예측하고,이유를 설명하시오.
+String str1 = "Simple String";
+String str2 = "Simple String";
+   
+      String str3 = new String("Simple String");
+      String str4 = new String("Simple String");
+   
+      if(str1 == str2)
+         System.out.println("str1과 str2는 동일 인스턴스 참조");
+      else
+         System.out.println("str1과 str2는 다른 인스턴스 참조");
+   
+      if(str3 == str4)
+         System.out.println("str3과 str4는 동일 인스턴스 참조");
+      else
+         System.out.println("str3과 str4는 다른 인스턴스 참조");
+
+   → 결과 : str1과 str2는 동일 인스턴스 참조 / str3과 str4는 다른 인스턴스 참조
+   → str1과 str2는 인스턴스 풀에 생성된 Simple String이라는 같은 메모리 주소를 가리킨 상태.
+   → str3와 str4는 힙 영역에 생성된 Simple String이라는 문자열이 담긴 각기 다른 인스턴스를 가리킨 상태.
+   → 중요한 것은 String 변수를 서로 비교할 때 그 대상이 문자열에 담긴 내용이 아니라, "참조값"이라는 것.
+
+
+
+
+7.imutable 에 대하여 설명하시오.
+ - String 인스턴스는 한 번 생성되어 문자열이 입력되면 그 값을 변경시킬 수 x. (= 변하지 않는 = Immutable)
+ - 따라서 똑같이 생긴 문자열을 + 연산으로 이어붙이는 실행도 사실상은 하나의 String 인스턴스에 일부 문자열이
+   추가된 것이 아니라, 아예 새로운 인스턴스를 만들어 새로운 주소를 가리킨 상태가 됨.
+ - 주의할 것은 변하지 않는 것이 인스턴스의 "문자열" 내용이라는 것. 참조값이 변하지 않는 것이 x.
+
+
+
+8. 사용자로부터 받은 문자열(영문으로)에서 자음과 모음 개수를 계산하는 프로그램을 작성하라.
+
+
+
+
+9. 사용자로부터 키를 입력받아서 표준 체중을 계산한 후에 사용자의 체중과 비교하여 
+저체중인지, 표준인지, 과체중인지를 판단하는 프로그램을 작성하라. 표준 체중 계산식은 다음을 사용하라.
+표준체중 = ( 키 - 100 ) * 0.9
+======================================================
+package java_oop;
+
+public class Bmi {
+	private double height;
+	private double weight;
+	
+	Bmi(double height, double weight){
+		this.height = height;
+		this.weight = weight;
+	}
+	
+	public double standardH() {
+		return (height - 100) * 0.9;
+	}
+	
+	public void result() {
+		if(weight > standardH()) {
+			System.out.println("과체중");
+		}else if(weight == standardH()) {
+			System.out.println("표준");
+		}else {
+			System.out.println("저체중");
+		}
+	}
+}
+
+------------------------------------------------------------------------------------------------
+package java_oop;
+
+import java.util.Scanner;
+
+public class BmiMain {
+
+	public static void main(String[] args) {
+		Scanner scanner;
+		
+		while(true) {
+			scanner = new Scanner(System.in);
+			
+			System.out.println("키와 몸무게를 순서대로 입력하세요");
+			double height = scanner.nextDouble();
+			double weight = scanner.nextDouble();
+			
+			Bmi bmi = new Bmi(height, weight);
+			
+			System.out.println("표준 체중은 " + bmi.standardH());
+			bmi.result();
+			
+			System.out.println("계속 하시겠습니까? Y/N");
+			
+			String answer = scanner.next();
+			
+			if(answer.equals("y") || answer.equals("Y")) {
+				continue;
+			}else {
+				break;
+			}
+		}
+		scanner.close();
+	}
+
+}
+
+
+
+10. 2와 100 사이에 있는 모든 소수(prime number)를 찾는 프로그램을 작성하라. 주어진 정수 k를 2부터 k-1까지의 
+숫자로 나누어서 나머지가 0인 것이 하나라도 있으면 소수가 아니다.
+
+
+
+
+11.사용자에게 받은 문자열을 역순으로 화면에 출력하는 프로그램을 작성하시오.
+입력:abcde
+출력:edcba
+
+
+
