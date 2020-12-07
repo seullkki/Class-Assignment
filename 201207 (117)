@@ -166,6 +166,46 @@ public class BmiMain {
 
 10. 2와 100 사이에 있는 모든 소수(prime number)를 찾는 프로그램을 작성하라. 주어진 정수 k를 2부터 k-1까지의 
 숫자로 나누어서 나머지가 0인 것이 하나라도 있으면 소수가 아니다.
+==========================================================================================================
+package java_oop;
+
+public class PrimeNum {
+	private int num;
+	
+	PrimeNum(int num){
+		this.num = num;
+	}
+	
+	public void search() {				
+		for(int i = 2; i <= (num - 1); i++) {
+			if((num % i) != 0) {
+				continue;
+			}else {
+				System.out.println(num + "은(는) 소수가 아닙니다");
+				break;
+			}
+		}
+	}
+}
+----------------------------------------------------------------------------------------------------------------
+package java_oop;
+
+import java.util.Scanner;
+
+public class PrimeNumMain {
+
+	public static void main(String[] args) {
+		Scanner scanner;
+		
+		scanner = new Scanner(System.in);
+		
+		int num = scanner.nextInt();
+		
+		PrimeNum prime = new PrimeNum(num);
+		
+		prime.search();
+	}
+}
 
 
 
