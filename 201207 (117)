@@ -173,6 +173,42 @@ public class BmiMain {
 11.사용자에게 받은 문자열을 역순으로 화면에 출력하는 프로그램을 작성하시오.
 입력:abcde
 출력:edcba
+======================================================================
+package java_oop;
 
+public class Reverse {
+	String st;
+	
+	Reverse(String st){
+		this.st = st;
+	}
+	
+	public String result() {
+		return (new StringBuilder(st)).reverse().toString();
+	}
+}
+
+-----------------------------------------------------------------------------------
+package java_oop;
+
+import java.util.Scanner;
+
+public class ReverseMain {
+
+	public static void main(String[] args) {
+		Scanner scanner;
+		scanner = new Scanner(System.in);
+		
+		String st = scanner.next();
+		
+		Reverse rev = new Reverse(st);
+		
+		StringBuilder st1 = new StringBuilder(st);
+		
+		System.out.println(rev.result());
+	}
+
+}
+--------------------------------------------------------------------------------
 
 
