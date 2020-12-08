@@ -70,9 +70,6 @@ package string_assign;
 import java.util.Scanner;
 
 public class IdInput {
-	//	입력 : 990925-1012999 (String 입력받기)
-	//	출력 : 990925 1012999 (delete로 일부 문자열 지워서 출력)
-	
 	private String idnum;
 	
 	IdInput(){
