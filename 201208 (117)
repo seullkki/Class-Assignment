@@ -2,7 +2,7 @@
  - 형태 : "문자열" . concat( "이어붙일 문자열") . concat(" 이어붙일 문자열") .... ;
  - 기능 : 문자열을 연결시켜줌
  - 그동안 println 메소드에서 + 를 이용해 문자열을 이어 붙여 출력했던 것은 사실 컴파일러가 + 를 concat 메소드로
-   호출했기 때문.
+    호출했기 때문.
  - concat 메소드로 만들어지는 문자열은 원래 문자열에 새 문자열이 추가되는 것이 아님.
    String은 immutable 인스턴스이므로, 새 문자열이 만들어질 때마다 새로운 인스턴스를 생성, 메모리가 할당됨.
 
@@ -12,7 +12,7 @@
  - 기능 : 문자열의 일부를 추출
  - 형태 : 참조변수 . substring(추출한 문자열의 시작 인덱스, 마지막 인덱스);
 	→ 주의점 : 여기서 마지막 인덱스 번호까지 문자열을 추출하는 것이 x.
-		         마지막 인덱스 "이전까지"의 문자열을 추출해 출력.
+		   마지막 인덱스 "이전까지"의 문자열을 추출해 출력.
 	→ str.substring(2, 4);  :  입력한 문자열의 2번째부터 3번째까지 출력
 
 
@@ -21,9 +21,9 @@
  - 기능 : 두 문자열을 비교함
  - 형태 : 기준 문자열의 참조변수 . compareTo( 비교할 문자열의 참조변수 );
  - 특징 : 리턴값이 'int' / 사전에서 어떤 문자열이 더 먼저 오는지를 기준으로 값이 출력됨.
-	 → 두 문자열을 비교해 기준 문자열과 비교 문자열이 일치하면 리턴값 ' 0 ' 출력
-	 → 사전에서 기준 문자열이 비교 문자열보다 먼저 오면 리턴값은 '음수'
-	 → 사전에서 기준 문자열이 비교 문자열보다 나중에 오면 리턴값은 '양수' 
+	→ 두 문자열을 비교해 기준 문자열과 비교 문자열이 일치하면 리턴값 ' 0 ' 출력
+	→ 사전에서 기준 문자열이 비교 문자열보다 먼저 오면 리턴값은 '음수'
+	→ 사전에서 기준 문자열이 비교 문자열보다 나중에 오면 리턴값은 '양수' 
 
 
 
@@ -57,7 +57,7 @@ String str = "age: " + 17;
      → 메모리에 부담이 덜 하므로 속도가 빠름.
      → 방법 : StringBuilder 참조변수 . append(" 추가할 문자열 ");
      → 주의점 : append 메소드로 추가한 문자열은 println(StringBuilder 참조변수);로는 출력 x.
-	      자바에 오버로드 되어 있지 않기 때문. 따라서 StringBuilder 참조변수.toString() 메소드를 써주어야 함.
+	        자바에 오버로드 되어 있지 않기 때문. 따라서 StringBuilder 참조변수.toString() 메소드를 써주어야 함.
 
 
 
@@ -70,6 +70,9 @@ package string_assign;
 import java.util.Scanner;
 
 public class IdInput {
+	//	입력 : 990925-1012999 (String 입력받기)
+	//	출력 : 990925 1012999 (delete로 일부 문자열 지워서 출력)
+	
 	private String idnum;
 	
 	IdInput(){
@@ -132,6 +135,65 @@ int[] ar1 = new int[5];
 9.아래를 프로그래밍 하시오.(단 클래스로 구성할것)
 입력:lee sunkyo
 출력:first name: lee second name:sunkyo
+=========================================================
+package string_assign;
+
+import java.util.Scanner;
+
+public class Name {
+	private String name;
+	
+	Name(){
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	private void input() {
+		Scanner scanner;
+		scanner = new Scanner(System.in);
+		
+		System.out.println("영문 이름을 입력하세요(예 : lee sunkyo)");
+		
+		name = scanner.nextLine();
+		
+		scanner.close();
+	}
+	
+	private void output() {
+		String[] sp = name.split(" ");
+		
+		System.out.print("first name : " + sp[0] + ", ");
+		System.out.println("last name : " + sp[1]);
+	}
+	
+	public void Result() {
+		input();
+		output();
+	}
+}
+
+---------------------------------------------------------------------------------------------------
+package string_assign;
+
+public class NameMain {
+
+	public static void main(String[] args) {
+		Name name = new Name();
+		
+		name.Result();
+	}
+}
 
 
 
@@ -144,6 +206,73 @@ int[] ar1 = new int[5];
 
 입력 : 홍길동 
 출력 : 공백이 없군요. 다시 입력해주세요.
+==============================================================
+package string_assign;
+
+import java.util.Scanner;
+
+public class NameGap {
+	private String name;
+	
+	NameGap(){
+	}
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	private void input() {
+		Scanner scanner;
+		
+		while(true) {
+			scanner = new Scanner(System.in);
+			
+			System.out.println("이름을 입력해주세요(예 : 홍 길동)");
+			
+			name = scanner.nextLine();
+			
+			if(name.contains(" ")) {
+				output();
+				System.out.println();
+			}else
+				System.out.println("공백이 없군요. 다시 입력해주세요.");
+				System.out.println();
+		}
+	}
+	
+	private void output() {
+		String[] sp = name.split(" ");
+		System.out.print("성 : " + sp[0] + ", ");
+		System.out.print("이름 : " + sp[1]);
+	}
+	
+	public void Result() {
+		input();
+		output();
+	}
+}
+
+------------------------------------------------------------------------------------------------------------------
+package string_assign;
+
+public class NameGapMain {
+	public static void main(String[] args) {
+		NameGap ng = new NameGap();
+		
+		ng.Result();
+	}
+}
+
 
 
 
@@ -156,6 +285,67 @@ int[] ar1 = new int[5];
 
 입력: Java.avi 
 출력: 파일이름은:Java 이며 확장자는 avi 입니다.
+==========================================================
+package string_assign;
+
+import java.util.Scanner;
+
+public class FileName {
+	private String file;
+	
+	FileName(){
+	}
+
+	
+	public String getFile() {
+		return file;
+	}
+
+
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+
+
+	private void input() {
+		Scanner scanner;
+		scanner = new Scanner(System.in);
+		
+		System.out.println("파일명과 확장자를 입력하세요(예 : calcu.hwp)");
+		
+		file = scanner.nextLine();
+		
+		scanner.close();
+	}
+	
+	private void output() {
+		String[] extension = file.split("\\.");
+		System.out.println("파일 이름은 : " + extension[0] + "이며, 확장자는 : " + extension[1]);
+	}
+	
+	public void Result() {
+		input();
+		output();
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------
+package string_assign;
+
+public class FileNameMain {
+	public static void main(String[] args) {
+		FileName fn = new FileName();
+		
+		fn.Result();
+	}
+}
+
+
+
+
+
 문제12. Scanner 클래스를 이용해서 한 줄 읽고, 공백으로 분리된 "단어"가 몇 개 들어 있는지 확인해보자.
 
    "그만"을 입력할 때까지 반복하는 프로그램이다.힌트(split 함수를 이용해 볼것)
@@ -165,5 +355,75 @@ int[] ar1 = new int[5];
 입력 : 자바 수업은 2층 C클래스 
 출력 : 단어의 개수는 4
 입력 : 그만 > 출력 : 프로그램 종료
+==============================================================
+package string_assign;
+
+import java.util.Scanner;
+
+public class CountWords {
+	private String words;
+	
+	CountWords(){
+	}
+	
+	
+	public String getWords() {
+		return words;
+	}
+
+
+
+	public void setWords(String words) {
+		this.words = words;
+	}
+
+
+
+	private void input() {
+		Scanner scanner;
+		
+		while(true) {
+			scanner = new Scanner(System.in);
+			
+			System.out.println("단어를 입력하세요.");
+			System.out.print("입력 : ");
+			
+			words = scanner.nextLine();
+			
+			if(words.equals("그만")) {
+				System.out.println("프로그램 종료");
+				break;
+			}else {
+				output();
+				continue;
+			}
+		}
+		scanner.close();
+	}
+	
+	private void output() {
+		String[] count = words.split(" ");
+		System.out.println("출력 : 단어 개수는 " + count.length + "개");
+		System.out.println("그만 하시려면 '그만'을 입력하세요.");
+		System.out.println();
+	}
+	
+	public void Result() {
+		input();
+		output();
+	}
+}
+----------------------------------------------------------------------------------------------------
+package string_assign;
+
+public class CountWordsMain {
+	public static void main(String[] args) {
+		CountWords cw = new CountWords();
+		
+		cw.Result();
+	}
+}
+
+
 
 
