@@ -245,8 +245,8 @@ public class MaxNum {
 		 r = printRandom();
 		 int max = random[0];
 		
-		for(int i = 0; i < random.length; i++) {
-			for(int j = 0; j < i; j++) {
+		for(int i = 1; i < random.length; i++) {
+			for(int j = 0; j < i; j++) {					// 필요 없는 코드
 				if(random[i] > max) {
 					max = random[i];
 				}
