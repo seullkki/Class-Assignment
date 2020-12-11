@@ -325,3 +325,62 @@ public class Point3DMain {
 0 0 1 0 0 0 0 0 0 0
 
 ===========================================================
+package inheritance_assign;
+
+import java.util.Scanner;
+
+public class Movie {
+	private int[] seatNum = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	private int[] seatChoice = new int[10];
+	
+	public Movie() {
+	}
+	
+	public void getSeat() {
+		int i;
+		int j;
+		
+		do{
+			System.out.println("----------------------");
+			for(i = 0; i < seatNum.length; i++) {
+					System.out.print(seatNum[i] + " ");
+			}
+			
+			System.out.println();
+			System.out.println("----------------------");
+			
+			for(j = 0; j < seatChoice.length; j++) {
+				System.out.print(seatChoice[j] + " ");
+			}
+			
+			if((i >= seatNum.length) && (j >= seatChoice.length)) {
+				i = 0;
+				j = 0;
+			}
+						
+			Scanner sc;
+			sc = new Scanner(System.in);
+			
+			System.out.println();
+			System.out.println();
+			System.out.print("몇 번째 좌석을 예약하시겠습니까? ");
+			
+			int num = sc.nextInt();
+			
+			//if(seatNum[i] == num) {				// 필요 없음
+				seatChoice[num] = 1;
+			//}
+			
+		} while(true);
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------
+package inheritance_assign;
+
+public class MovieMain {
+	public static void main(String[] args) {
+		Movie mv = new Movie();
+
+		mv.getSeat();
+	}
+}
