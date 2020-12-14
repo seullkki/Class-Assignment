@@ -1,0 +1,271 @@
+1.Object 클래스에 대하여 설명하시오.
+  - 의미 : "모든 클래스"는 기본으로 상속하는 클래스가 있음 = Object 클래스
+
+  - 사용 방법 : 컴파일러는 자동으로 java.lang.Object 클래스를 상속하는 코드를 넣어줌.
+   	            → 'extends Object'가 생략된 상태로 들어가는 것.
+
+  - 이렇게 기본으로 Object 클래스를 상속하게 되면, Object 클래스가 가진 데이터 멤버와 메소드를 사용할 수 있게 됨.
+  
+  - Object 클래스를 가지고 println();의 메커니즘을 하나 더 이해할 수 있음
+    → ex. Shape circle = new Circle(10);
+             System.out.println(circle);   ------------------------------  에러 x
+    → 이것의 결과는 Circle 인스턴스의 첫 번째 주소.
+      Circle 클래스에 toString 메소드를 사용하여 리턴값을 주면, 주소 대신 리턴값이 출력됨.
+    → 다형성이 적용되어 Object 클래스를 오버라이딩하고 있는 상태.
+      자식 클래스인 Object 클래스가 가지고 있는 toString을 호출해 출력해주는 것.
+
+
+
+
+
+2.아래와 같이 출력되는 이유를 하시오.
+class A {
+	 @Override
+	 public String toString() {
+		 return "이것은 A 클래스 입니다.";
+	 }	
+}
+
+public class TestMain {
+	public static void main(String[] args) {
+		A a  = new A();
+		System.out.println(a);
+		
+	   }		
+}
+===============
+이것은 A 클래스 입니다.
+
+ → 클래스 A는 컴파일러에 의해 자동으로 Object 클래스를 상속하게 됨. 
+   그러면 Object 클래스를 오버라이딩하고 있는 상태가 됨.
+   객체를 생성하면 참조 변수 a는 객체의 첫 번째 주소를 가리키는데, 
+   클래스 A에서 자식 클래스인 Object가 가지고 있는 toString 메소드를 이용해 리턴값을 주었기 때문에 주소값 대신 리턴값이 출력됨.
+   
+
+
+
+
+3. class 이름 및 함수 에서 final 의 의미는?
+ - final + 클래스 : 어떤 클래스에서도 상속할 수 없다는 의미.
+ - final + 메소드 : 어떤 클래스에서도 오버라이딩 할 수 없다는 의미.
+
+
+
+
+4.연습문제 7-22 번(pdf 참고)을 푸시오.
+
+
+5.연습문제 7-23 번(pdf 참고)을 푸시오.
+
+
+
+
+6. interface 와 class 의 차이는?
+ - 형태 : interface + 인터페이스 이름 {
+	            메소드 호출(= 구현 부분이 없는 메소드  = 추상 메소드)
+          }
+
+ - interface 안에 메소드 구현 내용이 없는 이유?
+   "abstract public" 때문 → 의미 : "메소드는 자손이 구현하라"
+		                      → 위치 : 함수 호출의 맨 앞 부분 / 생략 가능 (아무 것도 붙이지 않으면 컴파일러가 자동으로 붙인 상태로 만들어줌) 
+						          
+ - 사용 방법 : class + 클래스 이름 + implements + 인터페이스 이름 {
+		                    메소드 호출
+	             }
+	              → implements : interface 만드는 키워드
+	              → 클래스가 클래스를 상속할 때 쓰는 extends 키워드와 비슷하지만, 상속이 아닌 메소드 '구현'을 해냄.
+	              → { } 안에 들어간 메소드를 구현해내는 것은 "클래스"의 역할 = 클래스 메소드를 오버라이딩하는 형태.
+                
+ - interface의 존재 이유 : 클래스 상속(extends)은 다중 상속이 안되고 단일 상속만 되는 반면,
+		                       interface 구현(implements)는 다중 상속(= 둘 이상의 인터페이스를 구현)을 가능케 함.
+
+ - 특징
+    ① 객체 생성 불가 (클래스는 내용이 아무 것도 없어도 객체 생성이 가능하지만, 인터페이스는 x)
+	                   (이유 : 생성자 자체가 없기 때문)
+		
+    ② 인터페이스형 참조변수 선언 가능 (주의 사항 : 객체 생성은 안되지만, 변수 선언은 가능 
+				                                                               -> 타입 : 인터페이스 이름 / 크기 : 4바이트)
+
+    ③ 이름 규칙 : I + 인터페이스 이름 / 인터페이스 이름 + able
+
+ 
+
+
+7. 다음을 프로그램 하시오.[필수]
+interface Printable { // MS가 정의하고 제공한 인터페이스
+   public void print(String doc);
+}
+ SPrinterDriver 와 LPrinterDriver를 만드시오
+======================
+
+public static void main(String[] args) {
+   String myDoc = "This is a report about...";
+   
+   // 삼성 프린터로 출력
+   Printable prn = new SPrinterDriver();
+   prn.print(myDoc);
+   System.out.println();
+
+   // LG 프린터로 출력
+   prn = new LPrinterDriver();
+   prn.print(myDoc);
+}
+================================================
+출력: From Samsung printer
+This is a report about ...
+
+From LG printer
+This is a report about ...
+===================================================
+package interface_assign;
+
+public class Print {
+	public static void main(String[] args) {
+		   String myDoc = "This is a report about...";
+		   
+		   // 삼성 프린터로 출력
+		   Printable prn = new SPrinterDriver();
+		   prn.print(myDoc);
+		   System.out.println();
+
+		   // LG 프린터로 출력
+		   prn = new LPrinterDriver();
+		   prn.print(myDoc);
+	}
+}
+
+class SPrinterDriver implements Printable{
+	SPrinterDriver(){
+		
+	}
+	
+	public void print(String doc) {
+		System.out.println("From Samsung Printer ");
+		System.out.println(doc);
+	}
+}
+
+class LPrinterDriver implements Printable{
+	LPrinterDriver(){
+		
+	}
+	
+	public void print(String doc) {
+		System.out.println("From LG Printer ");
+		System.out.println(doc);
+	}
+}
+---------------------------------------------------------------------------
+package interface_assign;
+
+public interface Printable {
+	public void print(String doc);
+}
+
+
+
+
+
+8.@Override 에 대하여 설명하시오.
+ - 메소드가 오버라이딩 되었다는 의미를 표현하는 방법.
+ - 컴파일 시 상위 클래스나 인터페이스에 해당 메소드가 존재하는지 확인하고, 만약 오버라이딩 되지 않으면 에러를 발생시킴.
+   
+ 
+
+
+9.interface 에 대하여 설명하시오.
+ - 하나의 표준(규약)을 만들어서 (=인터페이스) 각기 다른 상황에 따라 같은 규격으로 서로 다른 특징을 적용할 수 있도록 하는 것
+   
+ - 키워드 : implements
+
+ - interface의 { } 사이에는 메소드 호출만 들어갈 수 있으며, 여기에는 " abstract public"이 붙어 있음.
+   abstract public은 추상적인 메소드 규격을 인터페이스를 통해 제공하면, 구체적인 내용 구현은 클래스가 하도록 한다는 의미
+   (= 메소드는 자손이 구현하라)
+
+
+
+
+
+10.interface에 올수 있는 두가지는?
+ - abstract : 인터페이스 메소드 호출 부분 맨 앞에 들어감 / 컴파일러가 자동으로 붙여주며, 생략 가능 / "메소드는 자손이 구현하라"는 의미
+ 	  
+ - implements : 인터페이스 키워드 / class + 클래스 이름 + implements + 인터페이스 이름 { 구현 메소드 } 
+                / 클래스의 extends와 비슷한 역할을 하지만, 상속이 아닌 구현을 하는 역할.
+	        
+
+
+
+
+11.abstract 키워드에 대하여 설명하시오.
+ - 위치 : interface + 인터페이스 이름 {
+	              (abstract public) 메소드 ();
+          }
+ - 의미 : 추상적인 메소드 형태는 인터페이스에서 제공할테니, 메소드의 구현은 자손이 하라는 의미.
+ - 특징 : 생략 가능 / 컴파일러에 의해 자동으로 붙여짐.
+
+
+
+
+
+12. 아래의 출력 결과가 아래와 같이 나오도록 프로그래밍 하시오.
+Object obj = new Circle(10);
+System.out.println(obj);
+=================
+출력: 넓이는 100 입니다.
+===============================================
+package interface_assign;
+public class Circle1{
+	final double PI = Math.PI;
+	double radius;
+	
+	Circle1(double r){
+		this.radius = r;
+	}
+	
+	@Override
+	public String toString() {
+		return "출력 : 넓이는 " + (radius * radius * PI) + "입니다.";
+	}
+}
+----------------------------------------------------------------------------------------
+package interface_assign;
+
+public class Circle1Main {
+	public static void main(String[] args) {
+		Object obj = new Circle1(10);
+		System.out.println(obj);
+	}
+}
+
+
+
+
+
+13. 아래의 메모리를 그리시오.
+class MobilePhone {
+    protected String number;
+    
+    public MobilePhone(String num) {
+        number = num;
+    }    
+    public void answer() {
+        System.out.println("Hi~ from " + number);
+    }
+}
+
+class SmartPhone extends MobilePhone { 
+    private String androidVer;
+    
+    public SmartPhone(String num, String ver) {
+        super(num);
+        androidVer = ver;
+    }    
+    public void playApp() {
+        System.out.println("App is running in " + androidVer);
+    }
+}
+=======================================
+	MobilePhone phone = new SmartPhone("010-555-777", "Nougat");
+    	phone.answer();    	
+    	SmartPhone s = (SmartPhone)phone;    	
+    	s.playApp();
