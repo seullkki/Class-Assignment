@@ -1,4 +1,4 @@
-1.Object 클래스에 대하여 설명하시오.
+1.Object 클래스에 대하여 설명하시오. 
   - 의미 : "모든 클래스"는 기본으로 상속하는 클래스가 있음 = Object 클래스
 
   - 사용 방법 : 컴파일러는 자동으로 java.lang.Object 클래스를 상속하는 코드를 넣어줌.
@@ -270,5 +270,6 @@ class SmartPhone extends MobilePhone {
     	SmartPhone s = (SmartPhone)phone;    	
     	s.playApp();
 	
-<img width = "350" src="https://user-images.githubusercontent.com/75013108/102081816-2f7f9f00-3e54-11eb-9ea6-db6b08734413.jpg">
-<img width = "350" src="https://user-images.githubusercontent.com/75013108/102081822-30b0cc00-3e54-11eb-9b3f-5b46ba04b9ea.jpg">
+	
+	
+
