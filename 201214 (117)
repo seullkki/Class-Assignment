@@ -2,13 +2,13 @@
   - 의미 : "모든 클래스"는 기본으로 상속하는 클래스가 있음 = Object 클래스
 
   - 사용 방법 : 컴파일러는 자동으로 java.lang.Object 클래스를 상속하는 코드를 넣어줌.
-   	            → 'extends Object'가 생략된 상태로 들어가는 것.
+   	        → 'extends Object'가 생략된 상태로 들어가는 것.
 
   - 이렇게 기본으로 Object 클래스를 상속하게 되면, Object 클래스가 가진 데이터 멤버와 메소드를 사용할 수 있게 됨.
   
   - Object 클래스를 가지고 println();의 메커니즘을 하나 더 이해할 수 있음
     → ex. Shape circle = new Circle(10);
-             System.out.println(circle);   ------------------------------  에러 x
+          System.out.println(circle);   ------------------------------  에러 x
     → 이것의 결과는 Circle 인스턴스의 첫 번째 주소.
       Circle 클래스에 toString 메소드를 사용하여 리턴값을 주면, 주소 대신 리턴값이 출력됨.
     → 다형성이 적용되어 Object 클래스를 오버라이딩하고 있는 상태.
@@ -269,3 +269,5 @@ class SmartPhone extends MobilePhone {
     	phone.answer();    	
     	SmartPhone s = (SmartPhone)phone;    	
     	s.playApp();
+	
+
