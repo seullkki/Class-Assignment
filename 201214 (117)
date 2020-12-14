@@ -270,4 +270,6 @@ class SmartPhone extends MobilePhone {
     	SmartPhone s = (SmartPhone)phone;    	
     	s.playApp();
 	
-https://user-images.githubusercontent.com/75013108/102078636-97cb8200-3e4e-11eb-8b33-87733ae57088.jpg
+![KakaoTalk_20201214_205121176_01](https://user-images.githubusercontent.com/75013108/102078636-97cb8200-3e4e-11eb-8b33-87733ae57088.jpg)
+![KakaoTalk_20201214_205121176_02](https://user-images.githubusercontent.com/75013108/102078640-98fcaf00-3e4e-11eb-8786-2955f5425b18.jpg)
+
