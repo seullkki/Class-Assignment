@@ -42,15 +42,15 @@
 
 
 6.예외처리 UML를 그리시오.
-	           	Object
+	           	 Object
 		            ↓
-	           Throwable
-	        ↙	           ↘
-	   Error	           Exception
-	  	             ↙	           ↘	      
+	                Throwable
+	            ↙	           ↘
+	       Error	           Exception
+	  	                ↙	    ↘	      
 	      checked Exception     	RuntimeException
-				                                 ↓
-			                          unchecked Exception
+				                ↓
+			               unchecked Exception
 
 
 
