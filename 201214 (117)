@@ -36,6 +36,8 @@ public class TestMain {
 ===============
 이것은 A 클래스 입니다.
 
+ → 일단 println은 기본적으로 주소 이름을 출력하도록 만들어져 있음.
+ → 클래스 A는 toString이 오버라이딩되어 있지 않은 상태. 이런 경우 부모 클래스(Object 클래스)의 toString을 오버라이딩함.  
  → 클래스 A는 컴파일러에 의해 자동으로 Object 클래스를 상속하게 됨. 
    그러면 Object 클래스를 오버라이딩하고 있는 상태가 됨.
    객체를 생성하면 참조 변수 a는 객체의 첫 번째 주소를 가리키는데, 
@@ -223,7 +225,7 @@ public class Circle1{
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() {						// toString이 없었다면 주소를 출력하게 됨
 		return "출력 : 넓이는 " + (radius * radius * PI) + "입니다.";
 	}
 }
