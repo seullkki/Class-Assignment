@@ -40,9 +40,7 @@
 	<%
 		double width = Double.parseDouble(request.getParameter("width"));
 		double height = Double.parseDouble(request.getParameter("height"));
-	%>
-	
-	<%
+		
 		boxInfo.setHeight(height);
 		boxInfo.setWidth(width);
 	
