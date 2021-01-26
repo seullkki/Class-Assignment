@@ -1,6 +1,7 @@
 **[ 프로젝트 패키지 구조 ]**
 
-![spring_board3](C:\Users\김슬기\Desktop\java 캡쳐\spring_board3.PNG)
+![spring_board3](https://user-images.githubusercontent.com/75013108/105815545-679f0380-5ff6-11eb-8534-7f6d2fd35dbc.PNG)
+
 
 **[ edu.bit.board ]** - HomeController.java
 
